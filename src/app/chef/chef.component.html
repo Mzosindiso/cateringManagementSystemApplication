@@ -1,0 +1,161 @@
+<app-nav-bar>
+</app-nav-bar>
+<html>
+
+<div class="container" id="main-container">
+
+   <div class="container pt-4" id="main-container-role">
+      <br><br><br>
+      <h2>Chef Management</h2>
+      <br>
+      <!--table-->
+      <div class="card rounded-0 border-0 shadow">
+         <div class="card-body p-5">
+
+            <!--  Bootstrap table-->
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead>
+                     <tr>
+                        <!--add entity variable names here-->
+                        <th scope="col">#</th>
+                        <th scope="col">Chef Id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <!--loop through entity aray and display data to the table-->
+                     <tr *ngFor="let chef of chefs; index as i">
+                        <th scope=i>{{i+1}}</th>
+                        <td>{{chef.employeeId}}</td>
+                        <td>{{chef.firstName}}</td>
+                        <td>{{chef.lastName}}</td>
+                        <td>
+                           <!-- Call to action buttons: call your methods on click -->
+                           <ul class="list-inline m-0">
+                              <li class="list-inline-item">
+                                 <a (click)="openUpdateChefPopup(chef)" class="btn btn-outline-info a-btn-slide-text">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    <span><strong>Edit</strong></span>
+                                 </a>
+                              </li>
+                              <li class="list-inline-item">
+                                 <a (click)="openDeleteChefPopup(chef)" class="btn btn-outline-danger a-btn-slide-text">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <span><strong>Delete</strong></span>
+                                 </a>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <!--New entity add nutton-->
+      <div class="d-grid gap-2">
+         <br>
+         <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="openAddChefPopup()"><strong>
+               New Chef</strong></button>
+      </div>
+
+   </div>
+   <!--Models are displayed when clicking apon their buttons button-->
+   <!-- Add Modal -->
+   <div class="modal" id="addChefModal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Add Chef</h5>
+               <button (click)="closeAddChefPopup()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="addChefForm" (submit)="submitAddChefForm()">
+                  <div class="form-group">
+                     <label for="name">Chef Id</label>
+                     <input type="text" formControlName="employeeId" class="form-control" id="id" placeholder="Id"
+                        required>
+                  </div>
+                  <div class="form-group">
+                     <label for="email">First Name</label>
+                     <input type="email" formControlName="firstName" class="form-control" id="first name"
+                        placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="phone">Last Name</label>
+                     <input type="text" formControlName="lastName" class="form-control" id="jobTile"
+                        placeholder="Last Name" required>
+                  </div>
+                  <div class="modal-footer">
+                     <button (click)="closeAddChefPopup()" type="button" id="add-employee-form"
+                        class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button (click)="verifyAddChefForm($event)" id="saveChangesBtnId" type="submit"
+                        class="btn btn-primary">Save changes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Edit Modal -->
+   <div class="modal" id="updateChefModal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateChefModalLabel">Edit Chef {{editChef.firstName}}</h5>
+               <button (click)="closeUpdateChefPopup()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="editChefForm" (submit)="submitEditChefForm()">
+                  <div class="form-group">
+                     <label for="name">First Name</label>
+                     <input type="text" formControlName="firstName" name="firstName" class="form-control" id="firstName"
+                        placeholder="First Name">
+                  </div>
+                  <input type="hidden" formControlName="employeeId" name="id" class="form-control" id="id"
+                     placeholder="ID">
+                  <div class="form-group">
+                     <label for="lastName">Last Name</label>
+                     <input type="text" formControlName="lastName" name="lastName" class="form-control" id="lastName"
+                        placeholder="Last Name">
+                  </div>
+                  <div class="modal-footer">
+                     <button (click)="closeUpdateChefPopup()" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                     <button (click)="verifyEditChefForm($event)" id="editSaveChangesBtnId" type="submit"
+                        class="btn btn-primary">Save changes</button>
+                  </div>
+               </form>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+   <!-- Delete Modal -->
+   <div class="modal" id="deleteChefModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Delete Chef</h5>
+               <button (click)="closeDeleteChefModel()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <p>Are you sure you want to delete Chef {{deleteChef.firstName}}?</p>
+            </div>
+            <div class="modal-footer">
+               <button (click)="closeDeleteChefModel()" type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal">No</button>
+               <button (click)="onDeleteChef()" class="btn btn-danger">Yes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

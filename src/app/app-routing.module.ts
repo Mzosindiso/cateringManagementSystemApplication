@@ -5,11 +5,12 @@ import { BookingComponent } from './booking/booking.component';
 import { ChefComponent } from './chef/chef.component';
 import { ClientComponent } from './client/client.component';
 import { LoginComponent } from './login/login.component';
+import { WaitingStaffComponent } from './waiting-staff/waiting-staff.component';
 
 
 // Add paths to your page here
 const routes: Routes = [
-  {path:"", redirectTo:"loginForm", pathMatch:"full"},
+  {path:"login", redirectTo:"login", pathMatch:"full"},
   {path:"login", component: LoginComponent},
   {path:"chef", component: ChefComponent},
   {path:"waitingStaff", component: WaitingStaffComponent},
@@ -25,4 +26,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // add component into array
-export const routingComponents = [ LoginComponent, ChefComponent, BookingComponent,ClientComponent ]
+export const routingComponents = [ LoginComponent, AdminComponent, ChefComponent, BookingComponent,ClientComponent ]

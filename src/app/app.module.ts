@@ -25,6 +25,8 @@ import { StaffComponent } from './staff/staff.component';
 import { VenueComponent } from './venue/venue.component';
 import { BookingService } from './service/booking.service';
 import { ClientService } from './service/client.service';
+import { LoginService } from './service/login.service';
+import { AdminService } from './service/admin.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { ClientService } from './service/client.service';
     }) 
   ],
   //add service in providers
-  providers: [ChefService,BookingService,ClientService],
+  providers: [ChefService, BookingService, ClientService, LoginService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { BookingComponent } from './booking/booking.component';
 import { ChefComponent } from './chef/chef.component';
-import { LoginFormComponent } from './login-form/login-form.component';
+import { ClientComponent } from './client/client.component';
+import { LoginComponent } from './login/login.component';
+
 import { PaymentComponent } from './payment/payment.component';
 import { DateComponent } from './date/date.component';
 
 // Add paths to your page here
 const routes: Routes = [
   {path:"", redirectTo:"loginForm", pathMatch:"full"},
-  {path:"login", component: LoginFormComponent},
+  {path:"login", component: LoginComponent},
   {path:"chef", component: ChefComponent},
+  {path:"waitingStaff", component: WaitingStaffComponent},
+  {path:"admin", component: AdminComponent},
+  {path:"booking", component: BookingComponent},
+  {path:"client", component: ClientComponent},
   {path:"payment", component: PaymentComponent},
   {path:"date", component: DateComponent},
 
@@ -22,4 +30,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // add component into array
-export const routingComponents = [ LoginFormComponent, ChefComponent, PaymentComponent, DateComponent]
+export const routingComponents = [ LoginComponent, ChefComponent, BookingComponent,ClientComponent , PaymentComponent, DateComponent]

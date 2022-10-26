@@ -79,7 +79,7 @@ export class ChefComponent implements OnInit
     this.chefService.deleteChef(this.chefId).subscribe(
       (response: void) => {
         this.getChefs();
-        this.toastr.success("delete successful", "Mbuso Kotobe");
+        this.toastr.success("delete successful", "successful");
         this.closeDeleteChefModel();
       },
       (error: HttpErrorResponse) => {

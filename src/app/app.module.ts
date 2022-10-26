@@ -63,7 +63,7 @@ import { AdminService } from './service/admin.service';
     }) 
   ],
   //add service in providers
-  providers: [ChefService, BookingService, ClientService, LoginService, AdminService, DateComponent, PaymentComponent, WaitingStaffComponent, EntertainmentComponent],
+  providers: [ChefService, BookingService, ClientService, LoginService, AdminService, DateComponent, PaymentComponent, WaitingStaffComponent, EntertainmentComponent, ManagerComponent, StaffComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,6 +10,8 @@ import { WaitingStaffComponent } from './waiting-staff/waiting-staff.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DateComponent } from './date/date.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
+import { ManagerComponent } from './manager/manager.component';
+import { StaffComponent } from './staff/staff.component';
 
 // Add paths to your page here
 const routes: Routes = [
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:"payment", component: PaymentComponent},
   {path:"date", component: DateComponent},
   {path:"entertainment", component: EntertainmentComponent},
+  {path:"manager", component: ManagerComponent},
+  {path:"staff", component: StaffComponent},
 
   //for new components
 ];

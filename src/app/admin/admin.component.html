@@ -1,1 +1,186 @@
-<p>admin works!</p>
+<app-nav-bar>
+</app-nav-bar>
+<html>
+
+<div class="container" id="main-container">
+
+   <div class="container pt-4" id="main-container-role">
+      <br><br><br>
+      <h2>Admin Management</h2>
+      <br>
+      <!--table-->
+      <div class="card rounded-0 border-0 shadow">
+         <div class="card-body p-5">
+
+            <!--  Bootstrap table-->
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead>
+                     <tr>
+                        <!--add entity variable names here-->
+                        <th scope="col">#</th>
+                        <th scope="col">Admin ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <!--loop through entity aray and display data to the table-->
+                     <tr *ngFor="let admin of admins; index as i">
+                        <th scope=i>{{i+1}}</th>
+                        <td>{{admin.adminNum}}</td>
+                        <td>{{admin.firstName}}</td>
+                        <td>{{admin.lastName}}</td>
+                        <td>{{admin.email}}</td>
+                        <td>{{admin.phoneNum}}</td>
+                        <td>
+                           <!-- Call to action buttons: call your methods on click -->
+                           <ul class="list-inline m-0">
+                              <li class="list-inline-item">
+                                 <a (click)="openUpdateAdminPopup(admin)" class="btn btn-outline-info a-btn-slide-text">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    <span><strong>Edit</strong></span>
+                                 </a>
+                              </li>
+                              <li class="list-inline-item">
+                                 <a (click)="openDeleteAdminPopup(admin)" class="btn btn-outline-danger a-btn-slide-text">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <span><strong>Delete</strong></span>
+                                 </a>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <!--New entity add nutton-->
+      <div class="d-grid gap-2">
+         <br>
+         <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="openAddAdminPopup()"><strong>
+               New Admin</strong></button>
+      </div>
+
+   </div>
+   <!--Models are displayed when clicking apon their buttons button-->
+   <!-- Add Modal -->
+   <div class="modal" id="addAdminModal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Add Admin</h5>
+               <button (click)="closeAddAdminPopup()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="addAdminForm" (submit)="submitAddAdminForm()">
+                  <div class="form-group">
+                     <label for="name">Admin ID</label>
+                     <input type="text" formControlName="adminNum" class="form-control" id="adminNum" placeholder="Admin Number"
+                        required>
+                  </div>
+                  <div class="form-group">
+                     <label for="firstName">First Name</label>
+                     <input type="email" formControlName="firstName" class="form-control" id="firstName"
+                        placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="phone">Last Name</label>
+                     <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                        placeholder="Last Name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" class="form-control" id="email"
+                       placeholder="user@email.com" required>
+                 </div>
+                 <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" formControlName="phoneNum" class="form-control" id="phoneNum"
+                       placeholder="000 0000 000" required>
+                 </div>
+                  <div class="modal-footer">
+                     <button (click)="closeAddAdminPopup()" type="button" id="add-employee-form"
+                        class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button (click)="verifyAddAdminForm($event)" id="saveChangesBtnId" type="submit"
+                        class="btn btn-primary">Save changes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Edit Modal -->
+   <div class="modal" id="updateAdminModal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateAdminModalLabel">Edit Admin {{editAdmin.firstName}}</h5>
+               <button (click)="closeUpdateAdminPopup()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="editAdminForm" (submit)="submitEditAdminForm()">
+                  <div class="form-group">
+                     <label for="name">First Name</label>
+                     <input type="text" formControlName="firstName" name="firstName" class="form-control" id="firstName"
+                        placeholder="First Name">
+                  </div>
+                  <input type="hidden" formControlName="adminNum" name="adminNum" class="form-control" id="adminNum"
+                     placeholder="Admin ID">
+
+                  <div class="form-group">
+                     <label for="lastName">Last Name</label>
+                     <input type="text" formControlName="lastName" name="lastName" class="form-control" id="lastName"
+                        placeholder="Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" name="email" class="form-control" id="email"
+                       placeholder="user@email.com">
+                 </div>
+                 <div class="form-group">
+                    <label for="lastName">Phone Number</label>
+                    <input type="text" formControlName="phoneNum" name="phoneNum" class="form-control" id="phoneNum"
+                       placeholder="000 000 0000">
+                 </div>
+                  <div class="modal-footer">
+                     <button (click)="closeUpdateAdminPopup()" type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                     <button (click)="verifyEditAdminForm($event)" id="editSaveChangesBtnId" type="submit"
+                        class="btn btn-primary">Save changes</button>
+                  </div>
+               </form>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+   <!-- Delete Modal -->
+   <div class="modal" id="deleteAdminModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Delete Admin</h5>
+               <button (click)="closeDeleteAdminModel()" type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <p>Are you sure you want to delete Admin {{deleteAdmin.firstName}}?</p>
+            </div>
+            <div class="modal-footer">
+               <button (click)="closeDeleteAdminModel()" type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal">No</button>
+               <button (click)="onDeleteAdmin()" class="btn btn-danger">Yes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

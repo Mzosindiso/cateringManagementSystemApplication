@@ -23,6 +23,8 @@ import { ManagerComponent } from './manager/manager.component';
 import { PaymentComponent } from './payment/payment.component';
 import { StaffComponent } from './staff/staff.component';
 import { VenueComponent } from './venue/venue.component';
+import { WaitingStaffService } from './service/waitingStaff.service';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { VenueComponent } from './venue/venue.component';
     StaffComponent,
     VenueComponent,
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -58,7 +61,7 @@ import { VenueComponent } from './venue/venue.component';
     }) 
   ],
   //add service in providers
-  providers: [ChefService],
+  providers: [ChefService, WaitingStaffService, LoginComponent, AdminComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

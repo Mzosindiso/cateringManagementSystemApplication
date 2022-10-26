@@ -7,6 +7,8 @@ import { ClientComponent } from './client/client.component';
 import { LoginComponent } from './login/login.component';
 import { WaitingStaffComponent } from './waiting-staff/waiting-staff.component';
 
+import { PaymentComponent } from './payment/payment.component';
+import { DateComponent } from './date/date.component';
 
 // Add paths to your page here
 const routes: Routes = [
@@ -17,6 +19,9 @@ const routes: Routes = [
   {path:"admin", component: AdminComponent},
   {path:"booking", component: BookingComponent},
   {path:"client", component: ClientComponent},
+  {path:"payment", component: PaymentComponent},
+  {path:"date", component: DateComponent},
+
   //for new components
 ];
 
@@ -26,4 +31,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // add component into array
-export const routingComponents = [ LoginComponent, AdminComponent, ChefComponent, BookingComponent,ClientComponent ]
+
+export const routingComponents = [ LoginComponent, ChefComponent, BookingComponent,ClientComponent , PaymentComponent, DateComponent]

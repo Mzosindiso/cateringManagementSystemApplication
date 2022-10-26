@@ -9,10 +9,11 @@ import { WaitingStaffComponent } from './waiting-staff/waiting-staff.component';
 
 import { PaymentComponent } from './payment/payment.component';
 import { DateComponent } from './date/date.component';
+import { EntertainmentComponent } from './entertainment/entertainment.component';
 
 // Add paths to your page here
 const routes: Routes = [
-  {path:"login", redirectTo:"login", pathMatch:"full"},
+  {path:"", redirectTo:"login", pathMatch:"full"},
   {path:"login", component: LoginComponent},
   {path:"chef", component: ChefComponent},
   {path:"waitingStaff", component: WaitingStaffComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:"client", component: ClientComponent},
   {path:"payment", component: PaymentComponent},
   {path:"date", component: DateComponent},
+  {path:"entertainment", component: EntertainmentComponent},
 
   //for new components
 ];
@@ -32,4 +34,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 // add component into array
 
-export const routingComponents = [ LoginComponent, ChefComponent, BookingComponent,ClientComponent , PaymentComponent, DateComponent]
+export const routingComponents = [ LoginComponent, ChefComponent, BookingComponent,ClientComponent , PaymentComponent, DateComponent, PaymentComponent, DateComponent]

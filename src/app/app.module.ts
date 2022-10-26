@@ -23,6 +23,8 @@ import { ManagerComponent } from './manager/manager.component';
 import { PaymentComponent } from './payment/payment.component';
 import { StaffComponent } from './staff/staff.component';
 import { VenueComponent } from './venue/venue.component';
+import { BookingService } from './service/booking.service';
+import { ClientService } from './service/client.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { VenueComponent } from './venue/venue.component';
     }) 
   ],
   //add service in providers
-  providers: [ChefService],
+  providers: [ChefService,BookingService,ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

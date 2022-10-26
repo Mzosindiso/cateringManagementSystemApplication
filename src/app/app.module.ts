@@ -26,7 +26,6 @@ import { VenueComponent } from './venue/venue.component';
 import { WaitingStaffService } from './service/waitingStaff.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +44,7 @@ import { WaitingStaffService } from './service/waitingStaff.service';
     StaffComponent,
     VenueComponent,
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -61,7 +61,7 @@ import { WaitingStaffService } from './service/waitingStaff.service';
     }) 
   ],
   //add service in providers
-  providers: [ChefService, WaitingStaffService],
+  providers: [ChefService, WaitingStaffService, LoginComponent, AdminComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

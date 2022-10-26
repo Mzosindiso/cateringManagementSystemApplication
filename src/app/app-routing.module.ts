@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 import { ChefComponent } from './chef/chef.component';
 import { LoginComponent } from './login/login.component';
 import { WaitingStaffComponent } from './waiting-staff/waiting-staff.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path:"login", component: LoginComponent},
   {path:"chef", component: ChefComponent},
   {path:"waitingStaff", component: WaitingStaffComponent},
+  {path:"admin", component: AdminComponent},
   //for new components
 ];
 
@@ -19,4 +21,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // add component into array
-export const routingComponents = [ LoginComponent, ChefComponent, WaitingStaffComponent]
+export const routingComponents = [LoginComponent, ChefComponent, WaitingStaffComponent, AdminComponent]
